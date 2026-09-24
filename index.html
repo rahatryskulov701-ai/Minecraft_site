@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Minecraft Command Center</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.75)),
+        url("https://images.unsplash.com/photo-1605894943353-4a9f9c6c2f7d?auto=format&fit=crop&w=1920&q=80");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+header {
+    text-align: center;
+    padding: 35px 15px;
+
+    background: rgba(0,0,0,0.6);
+    border-bottom: 2px solid #55c95b;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(30px, 7vw, 55px);
+    text-shadow: 4px 4px 0 #000;
+}
+
+header p {
+    color: #ddd;
+    font-size: 17px;
+}
+
+main {
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 0 15px;
+}
+
+.card {
+    background: rgba(15,15,15,0.88);
+    border: 1px solid #555;
+    border-radius: 16px;
+
+    padding: 22px;
+    margin-bottom: 20px;
+
+    box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+}
+
+h2 {
+    margin-top: 0;
+    color: #71e276;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+
+    border-radius: 10px;
+    border: 1px solid #666;
+
+    background: #111;
+    color: white;
+
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+}
+
+button {
+    padding: 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #45b94d;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 0 #28752d;
+
+    transition: 0.15s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.15);
+}
+
+button:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #28752d;
+}
+
+#output {
+    margin-top: 15px;
+    padding: 15px;
+
+    min-height: 65px;
+
+    background: #080808;
+    border: 1px solid #444;
+    border-radius: 10px;
+
+    color: #b9ffb9;
+
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #aaa;
+}
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<h1>⛏ Minecraft Command Center</h1>
+
+<p>
+Полезные команды Minecraft Java Edition
+</p>
+
+</header>
+
+
+<main>
+
+<div class="card">
+
+<h2>⚡ Генератор команд</h2>
+
+<input
+    id="player"
+    placeholder="Ник игрока (например Steve)"
+>
+
+<div class="grid">
+
+<button onclick="giveDiamonds()">
+💎 Дать алмазы
+</button>
+
+<button onclick="heal()">
+❤️ Вылечить
+</button>
+
+<button onclick="teleport()">
+📍 Телепорт
+</button>
+
+<button onclick="day()">
+☀️ Сделать день
+</button>
+
+</div>
+
+<div id="output">
+Команда появится здесь...
+</div>
+
+<button
+    style="margin-top:10px;width:100%;"
+    onclick="copyCommand()"
+>
+📋 Скопировать команду
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>🧰 Полезные команды</h2>
+
+<div class="grid">
+
+<button onclick="showCommand('/gamerule keepInventory true')">
+🎒 Сохранение инвентаря
+</button>
+
+<button onclick="showCommand('/gamemode creative')">
+🟩 Креатив
+</button>
+
+<button onclick="showCommand('/gamemode survival')">
+⚔️ Выживание
+</button>
+
+<button onclick="showCommand('/weather clear')">
+☀️ Ясная погода
+</button>
+
+<button onclick="showCommand('/difficulty peaceful')">
+🕊️ Мирная сложность
+</button>
+
+<button onclick="showCommand('/locate structure minecraft:village_plains')">
+🏠 Найти деревню
+</button>
+
+</div>
+
+</div>
+
+</main>
+
+
+<footer>
+
+Minecraft Command Center • Сделано для Minecraft
+
+</footer>
+
+
+<script>
+
+let currentCommand = "";
+
+const output = document.getElementById("output");
+
+
+function getPlayer() {
+
+    return document.getElementById("player").value.trim() || "@p";
+
+}
+
+
+function showCommand(command) {
+
+    currentCommand = command;
+
+    output.textContent = command;
+
+}
+
+
+function giveDiamonds() {
+
+    const player = getPlayer();
+
+    showCommand(
+        `/give ${player} minecraft:diamond 64`
+    );
+
+}
+
+
+function heal() {
+
+    const player = getPlayer();
+
+    showCommand(
+        `/effect give ${player} minecraft:instant_health 1 255 true`
+    );
+
+}
+
+
+function teleport() {
+
+    const player = getPlayer();
+
+    showCommand(
+        `/tp ${player} ~ ~10 ~`
+    );
+
+}
+
+
+function day() {
+
+    showCommand(
+        `/time set day`
+    );
+
+}
+
+
+async function copyCommand() {
+
+    if (!currentCommand) return;
+
+    try {
+
+        await navigator.clipboard.writeText(currentCommand);
+
+        output.textContent =
+            "Скопировано! ✓\n\n" +
+            currentCommand;
+
+    }
+
+    catch {
+
+        output.textContent =
+            currentCommand +
+            "\n\nСкопируй команду вручную.";
+
+    }
+
+}
+
+</script>
+
+</body>
+  </html>
