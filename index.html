@@ -2,10 +2,16 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+
 <meta name="google-site-verification" content="b5kfJoDOYSl6E0SnCCIqYZ0Orro0-AUcJ77mIlGFX_k">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Minecraft Command Center</title>
+<title>Minecraft Command Center — Команды Minecraft Java</title>
+
+<meta name="description" content="Большая база команд Minecraft Java Edition. Команды для телепортации, предметов, эффектов, мобов, времени, погоды и gamerule. Быстрый поиск и копирование.">
+
+<meta name="keywords" content="Minecraft команды, команды Minecraft Java, Minecraft command, команды майнкрафт, /give, /tp, /summon, gamerule">
 
 <style>
 * {
@@ -13,309 +19,258 @@
 }
 
 :root {
-    --green: #55d65b;
-    --green-dark: #299b35;
-    --bg: #080b08;
-    --card: rgba(18, 22, 18, .94);
-    --border: rgba(110, 255, 120, .22);
+    --green: #55e05c;
+    --green2: #2ca637;
+    --dark: #070a07;
+    --card: rgba(17, 22, 17, .95);
+    --border: rgba(100, 255, 110, .2);
+    --text: #f1f5f1;
+    --muted: #9da79d;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     min-height: 100vh;
+    color: var(--text);
     font-family: Arial, sans-serif;
-    color: white;
-    background:
-        radial-gradient(circle at top, #18351a 0%, #080b08 55%);
-}
 
-/* HEADER */
+    background:
+        linear-gradient(rgba(5,8,5,.88), rgba(5,8,5,.96)),
+        repeating-linear-gradient(
+            45deg,
+            #101510 0px,
+            #101510 12px,
+            #0c100c 12px,
+            #0c100c 24px
+        );
+}
 
 header {
-    position: relative;
-    padding: 55px 20px 45px;
     text-align: center;
+    padding: 55px 20px 45px;
+    border-bottom: 1px solid var(--border);
 
     background:
-        linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.8));
-
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-}
-
-header::before {
-    content: "";
-    position: absolute;
-    width: 400px;
-    height: 400px;
-
-    left: 50%;
-    top: -250px;
-
-    transform: translateX(-50%);
-
-    background: rgba(85,214,91,.18);
-    filter: blur(90px);
+        radial-gradient(circle at 50% 0%, rgba(70,220,80,.22), transparent 55%);
 }
 
 .logo {
-    position: relative;
-    font-size: 60px;
+    font-size: 64px;
     animation: float 3s ease-in-out infinite;
 }
 
 h1 {
-    position: relative;
-
-    margin: 5px 0 10px;
-
+    margin: 8px 0;
     font-size: clamp(32px, 7vw, 60px);
-
-    text-shadow:
-        4px 4px 0 #000,
-        0 0 25px rgba(85,214,91,.35);
+    text-shadow: 4px 4px #000;
 }
 
 header p {
-    position: relative;
-    color: #b9c3b9;
+    color: var(--muted);
     font-size: 17px;
 }
 
-/* MAIN */
-
 main {
-    max-width: 1000px;
-    margin: 35px auto;
+    max-width: 1100px;
+    margin: 30px auto;
     padding: 0 15px;
 }
 
-/* CARDS */
-
 .card {
     background: var(--card);
-
     border: 1px solid var(--border);
     border-radius: 18px;
-
     padding: 24px;
-    margin-bottom: 20px;
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.45);
-
-    animation: appear .5s ease;
+    margin-bottom: 22px;
+    box-shadow: 0 15px 45px rgba(0,0,0,.45);
 }
-
-.card:hover {
-    border-color: rgba(110,255,120,.4);
-}
-
-/* TITLES */
 
 h2 {
     margin-top: 0;
-
     color: var(--green);
-
-    text-shadow: 0 0 12px rgba(85,214,91,.25);
 }
 
-/* SEARCH */
+.hero-text {
+    color: #c7cec7;
+    line-height: 1.6;
+}
 
-.search {
+.search-box {
     position: relative;
+    margin: 20px 0;
 }
 
-.search input {
-    padding-left: 45px;
-}
-
-.search span {
+.search-box span {
     position: absolute;
-
     left: 15px;
     top: 50%;
-
     transform: translateY(-50%);
-
     font-size: 20px;
 }
 
-/* INPUT */
-
 input {
     width: 100%;
+    padding: 16px 16px 16px 48px;
 
-    padding: 15px;
-
-    margin-bottom: 12px;
-
-    background: #090c09;
+    background: #070a07;
+    color: white;
 
     border: 1px solid #303830;
     border-radius: 12px;
 
-    color: white;
-
     font-size: 16px;
-
     outline: none;
-
-    transition: .2s;
 }
 
 input:focus {
     border-color: var(--green);
-
-    box-shadow:
-        0 0 0 3px rgba(85,214,91,.1);
+    box-shadow: 0 0 0 3px rgba(85,224,92,.1);
 }
 
-/* BUTTON GRID */
-
-.grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(190px, 1fr));
-
-    gap: 12px;
+.categories {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
-/* BUTTON */
-
-button {
-    position: relative;
-
-    padding: 15px;
-
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 12px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #3db946,
-            #23882c
-        );
-
+.category-btn {
+    padding: 10px 15px;
+    background: #151b15;
+    border: 1px solid #303830;
+    border-radius: 10px;
     color: white;
-
-    font-size: 15px;
-    font-weight: bold;
-
     cursor: pointer;
-
-    box-shadow:
-        0 5px 0 #176320,
-        0 8px 20px rgba(0,0,0,.25);
-
-    transition:
-        transform .15s,
-        filter .15s,
-        box-shadow .15s;
 }
 
-button:hover {
+.category-btn:hover,
+.category-btn.active {
+    background: var(--green2);
+    border-color: var(--green);
+}
+
+.commands {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+}
+
+.command {
+    background: #0b0f0b;
+    border: 1px solid #252d25;
+    border-radius: 14px;
+    padding: 18px;
+    transition: .2s;
+}
+
+.command:hover {
     transform: translateY(-3px);
-
-    filter: brightness(1.15);
-
-    box-shadow:
-        0 8px 0 #176320,
-        0 12px 25px rgba(0,0,0,.35);
+    border-color: rgba(85,224,92,.45);
 }
 
-button:active {
-    transform: translateY(3px);
-
-    box-shadow:
-        0 2px 0 #176320;
+.command h3 {
+    margin: 0 0 10px;
+    color: white;
 }
 
-/* COMMAND OUTPUT */
+.command p {
+    color: #9da79d;
+    line-height: 1.45;
+    font-size: 14px;
+}
 
-#output {
-    margin-top: 16px;
+.code {
+    display: block;
+    padding: 12px;
+    margin: 12px 0;
 
-    min-height: 70px;
+    background: #030503;
+    color: #8dff91;
 
-    padding: 16px;
-
-    background: #050705;
-
-    border: 1px solid #293029;
-
-    border-radius: 12px;
-
-    color: #9cff9f;
-
+    border-radius: 9px;
     font-family: monospace;
 
-    white-space: pre-wrap;
-
     overflow-x: auto;
+    white-space: nowrap;
 }
 
-/* COPY */
-
-.copy {
-    margin-top: 10px;
-
+.copy-btn {
     width: 100%;
+    padding: 11px;
 
-    background:
-        linear-gradient(
-            145deg,
-            #53615a,
-            #333b36
-        );
+    border: none;
+    border-radius: 9px;
 
-    box-shadow: 0 5px 0 #222;
+    background: linear-gradient(145deg, #3dbb47, #23882d);
+    color: white;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    box-shadow: 0 4px 0 #176320;
 }
 
-.copy:hover {
-    filter: brightness(1.2);
+.copy-btn:hover {
+    filter: brightness(1.15);
 }
 
-/* CATEGORY */
-
-.category {
-    margin-top: 25px;
-
-    padding-bottom: 8px;
-
-    color: #aaa;
-
-    border-bottom: 1px solid #252b25;
+.copy-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #176320;
 }
 
-/* TOAST */
+.quick {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.quick button {
+    padding: 14px;
+    border: 1px solid #303830;
+    border-radius: 10px;
+    background: #111611;
+    color: white;
+    cursor: pointer;
+}
+
+.quick button:hover {
+    border-color: var(--green);
+    background: #172017;
+}
+
+.no-results {
+    display: none;
+    text-align: center;
+    padding: 30px;
+    color: #899389;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 15px;
+    color: #687068;
+    border-top: 1px solid #171d17;
+}
 
 #toast {
     position: fixed;
-
-    bottom: 25px;
     left: 50%;
+    bottom: 25px;
 
-    transform:
-        translate(-50%, 100px);
-
-    background: #151b15;
-
-    border: 1px solid var(--green);
-
-    color: white;
+    transform: translate(-50%, 100px);
 
     padding: 13px 20px;
 
+    background: #151b15;
+    border: 1px solid var(--green);
     border-radius: 12px;
 
-    box-shadow: 0 8px 30px rgba(0,0,0,.5);
-
     opacity: 0;
-
     transition: .3s;
 
     z-index: 999;
@@ -323,27 +278,10 @@ button:active {
 
 #toast.show {
     opacity: 1;
-
-    transform:
-        translate(-50%, 0);
+    transform: translate(-50%, 0);
 }
-
-/* FOOTER */
-
-footer {
-    padding: 35px 15px;
-
-    text-align: center;
-
-    color: #687068;
-
-    font-size: 14px;
-}
-
-/* ANIMATIONS */
 
 @keyframes float {
-
     0%,100% {
         transform: translateY(0);
     }
@@ -353,433 +291,439 @@ footer {
     }
 }
 
-@keyframes appear {
-
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* MOBILE */
-
 @media(max-width:600px) {
-
     header {
         padding: 40px 15px;
     }
 
     .logo {
-        font-size: 45px;
+        font-size: 48px;
     }
 
     .card {
         padding: 18px;
     }
 
-    .grid {
+    .commands {
         grid-template-columns: 1fr;
-    }
-
-    button {
-        padding: 16px;
     }
 }
 </style>
 </head>
 
-
 <body>
 
 <header>
+    <div class="logo">⛏️</div>
 
-<div class="logo">⛏️</div>
+    <h1>Minecraft Command Center</h1>
 
-<h1>Minecraft Command Center</h1>
-
-<p>
-⚡ Команды Minecraft Java Edition • Быстро • Удобно • Красиво
-</p>
-
+    <p>
+        ⚡ Команды Minecraft Java Edition — поиск, объяснения и быстрое копирование
+    </p>
 </header>
-
 
 <main>
 
-
-<!-- GENERATOR -->
-
 <section class="card">
 
-<h2>⚡ Генератор команд</h2>
+    <h2>🎮 Minecraft Commands</h2>
 
-<input
-    id="player"
-    placeholder="Ник игрока (например Steve)"
->
-
-<div class="grid">
-
-<button onclick="giveDiamonds()">
-💎 Дать 64 алмаза
-</button>
-
-<button onclick="giveFood()">
-🍖 Дать еду
-</button>
-
-<button onclick="heal()">
-❤️ Полностью вылечить
-</button>
-
-<button onclick="teleport()">
-📍 Телепорт вверх
-</button>
-
-</div>
-
-<div id="output">
-Выбери команду...
-</div>
-
-<button
-    class="copy"
-    onclick="copyCommand()"
->
-📋 Скопировать команду
-</button>
+    <p class="hero-text">
+        Добро пожаловать в Minecraft Command Center!
+        Здесь собраны полезные команды Minecraft Java Edition:
+        телепортация, предметы, эффекты, мобы, погода, время,
+        игровые правила и многое другое.
+    </p>
 
 </section>
 
 
-<!-- SEARCH -->
-
 <section class="card">
 
-<h2>🔎 Поиск команд</h2>
+    <h2>🔎 Поиск команд</h2>
 
-<div class="search">
+    <div class="search-box">
+        <span>🔍</span>
 
-<span>🔍</span>
+        <input
+            id="search"
+            type="text"
+            placeholder="Например: алмазы, телепорт, погода, моб..."
+            oninput="searchCommands()"
+        >
+    </div>
 
-<input
-    id="search"
-    placeholder="Например: погода, креатив, алмазы..."
-    oninput="searchCommands()"
->
+    <div class="categories">
 
-</div>
+        <button class="category-btn active"
+            onclick="filterCategory('all', this)">
+            Все
+        </button>
 
-<div id="commands" class="grid">
+        <button class="category-btn"
+            onclick="filterCategory('player', this)">
+            👤 Игрок
+        </button>
 
-<button data-name="инвентарь сохранение keepinventory"
-onclick="showCommand('/gamerule keepInventory true')">
-🎒 Сохранение инвентаря
-</button>
+        <button class="category-btn"
+            onclick="filterCategory('world', this)">
+            🌍 Мир
+        </button>
 
-<button data-name="креатив creative"
-onclick="showCommand('/gamemode creative')">
-🟩 Креатив
-</button>
+        <button class="category-btn"
+            onclick="filterCategory('items', this)">
+            💎 Предметы
+        </button>
 
-<button data-name="выживание survival"
-onclick="showCommand('/gamemode survival')">
-⚔️ Выживание
-</button>
+        <button class="category-btn"
+            onclick="filterCategory('mobs', this)">
+            🐄 Мобы
+        </button>
 
-<button data-name="приключение adventure"
-onclick="showCommand('/gamemode adventure')">
-🗺️ Приключение
-</button>
+        <button class="category-btn"
+            onclick="filterCategory('effects', this)">
+            ✨ Эффекты
+        </button>
 
-<button data-name="день time day"
-onclick="showCommand('/time set day')">
-☀️ День
-</button>
+        <button class="category-btn"
+            onclick="filterCategory('server', this)">
+            ⚙️ Gamerule
+        </button>
 
-<button data-name="ночь time night"
-onclick="showCommand('/time set night')">
-🌙 Ночь
-</button>
+    </div>
 
-<button data-name="погода clear солнце"
-onclick="showCommand('/weather clear')">
-☀️ Ясная погода
-</button>
 
-<button data-name="дождь rain"
-onclick="showCommand('/weather rain')">
-🌧️ Дождь
-</button>
+    <div id="commands" class="commands">
 
-<button data-name="гроза thunder"
-onclick="showCommand('/weather thunder')">
-⛈️ Гроза
-</button>
+        <div class="command" data-category="items" data-search="алмазы diamond give предмет">
+            <h3>💎 Дать алмазы</h3>
+            <p>Выдаёт игроку 64 алмаза.</p>
+            <code class="code">/give @p minecraft:diamond 64</code>
+            <button class="copy-btn" onclick="copy('/give @p minecraft:diamond 64')">📋 Копировать</button>
+        </div>
 
-<button data-name="мирная peaceful"
-onclick="showCommand('/difficulty peaceful')">
-🕊️ Мирная сложность
-</button>
 
-<button data-name="легкая easy"
-onclick="showCommand('/difficulty easy')">
-🙂 Лёгкая сложность
-</button>
+        <div class="command" data-category="items" data-search="еда мясо steak beef">
+            <h3>🍖 Дать еду</h3>
+            <p>Выдаёт игроку 64 жареной говядины.</p>
+            <code class="code">/give @p minecraft:cooked_beef 64</code>
+            <button class="copy-btn" onclick="copy('/give @p minecraft:cooked_beef 64')">📋 Копировать</button>
+        </div>
 
-<button data-name="сложная hard"
-onclick="showCommand('/difficulty hard')">
-💀 Сложная сложность
-</button>
 
-<button data-name="деревня village найти"
-onclick="showCommand('/locate structure minecraft:village_plains')">
-🏠 Найти деревню
-</button>
+        <div class="command" data-category="player" data-search="телепорт tp teleport">
+            <h3>📍 Телепортация</h3>
+            <p>Телепортирует игрока к координатам.</p>
+            <code class="code">/tp @p 100 70 100</code>
+            <button class="copy-btn" onclick="copy('/tp @p 100 70 100')">📋 Копировать</button>
+        </div>
 
-<button data-name="портал fortress ад"
-onclick="showCommand('/locate structure minecraft:fortress')">
-🔥 Найти крепость
-</button>
 
-<button data-name="энд город endcity"
-onclick="showCommand('/locate structure minecraft:end_city')">
-🏰 Найти город Энда
-</button>
+        <div class="command" data-category="player" data-search="креатив creative режим">
+            <h3>🟩 Креатив</h3>
+            <p>Переключает игрока в творческий режим.</p>
+            <code class="code">/gamemode creative</code>
+            <button class="copy-btn" onclick="copy('/gamemode creative')">📋 Копировать</button>
+        </div>
 
-</div>
+
+        <div class="command" data-category="player" data-search="выживание survival">
+            <h3>⚔️ Выживание</h3>
+            <p>Переключает игрока в режим выживания.</p>
+            <code class="code">/gamemode survival</code>
+            <button class="copy-btn" onclick="copy('/gamemode survival')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="player" data-search="приключение adventure">
+            <h3>🗺️ Приключение</h3>
+            <p>Переключает игрока в приключенческий режим.</p>
+            <code class="code">/gamemode adventure</code>
+            <button class="copy-btn" onclick="copy('/gamemode adventure')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="player" data-search="наблюдатель spectator">
+            <h3>👁️ Наблюдатель</h3>
+            <p>Включает режим наблюдателя.</p>
+            <code class="code">/gamemode spectator</code>
+            <button class="copy-btn" onclick="copy('/gamemode spectator')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="player" data-search="убить kill">
+            <h3>💀 Убить игрока</h3>
+            <p>Мгновенно убивает выбранную цель.</p>
+            <code class="code">/kill @p</code>
+            <button class="copy-btn" onclick="copy('/kill @p')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="player" data-search="здоровье heal instant health">
+            <h3>❤️ Вылечить</h3>
+            <p>Даёт игроку эффект мгновенного лечения.</p>
+            <code class="code">/effect give @p minecraft:instant_health 1 255 true</code>
+            <button class="copy-btn" onclick="copy('/effect give @p minecraft:instant_health 1 255 true')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="effects" data-search="скорость speed быстро">
+            <h3>⚡ Скорость</h3>
+            <p>Даёт игроку повышенную скорость.</p>
+            <code class="code">/effect give @p minecraft:speed 60 2 true</code>
+            <button class="copy-btn" onclick="copy('/effect give @p minecraft:speed 60 2 true')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="effects" data-search="сила strength">
+            <h3>💪 Сила</h3>
+            <p>Даёт игроку эффект силы.</p>
+            <code class="code">/effect give @p minecraft:strength 60 2 true</code>
+            <button class="copy-btn" onclick="copy('/effect give @p minecraft:strength 60 2 true')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="effects" data-search="прыгучесть jump">
+            <h3>🦘 Прыгучесть</h3>
+            <p>Увеличивает высоту прыжка.</p>
+            <code class="code">/effect give @p minecraft:jump_boost 60 2 true</code>
+            <button class="copy-btn" onclick="copy('/effect give @p minecraft:jump_boost 60 2 true')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="world" data-search="день day time">
+            <h3>☀️ День</h3>
+            <p>Устанавливает дневное время.</p>
+            <code class="code">/time set day</code>
+            <button class="copy-btn" onclick="copy('/time set day')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="world" data-search="ночь night time">
+            <h3>🌙 Ночь</h3>
+            <p>Устанавливает ночное время.</p>
+            <code class="code">/time set night</code>
+            <button class="copy-btn" onclick="copy('/time set night')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="world" data-search="погода солнце clear">
+            <h3>☀️ Ясная погода</h3>
+            <p>Останавливает дождь и грозу.</p>
+            <code class="code">/weather clear</code>
+            <button class="copy-btn" onclick="copy('/weather clear')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="world" data-search="дождь rain">
+            <h3>🌧️ Дождь</h3>
+            <p>Включает дождливую погоду.</p>
+            <code class="code">/weather rain</code>
+            <button class="copy-btn" onclick="copy('/weather rain')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="world" data-search="гроза thunder">
+            <h3>⛈️ Гроза</h3>
+            <p>Включает грозу.</p>
+            <code class="code">/weather thunder</code>
+            <button class="copy-btn" onclick="copy('/weather thunder')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="world" data-search="деревня village locate">
+            <h3>🏠 Найти деревню</h3>
+            <p>Показывает координаты ближайшей деревни.</p>
+            <code class="code">/locate structure minecraft:village_plains</code>
+            <button class="copy-btn" onclick="copy('/locate structure minecraft:village_plains')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="world" data-search="крепость fortress nether ад">
+            <h3>🔥 Найти крепость</h3>
+            <p>Ищет ближайшую крепость в Нижнем мире.</p>
+            <code class="code">/locate structure minecraft:fortress</code>
+            <button class="copy-btn" onclick="copy('/locate structure minecraft:fortress')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="world" data-search="энд end city город">
+            <h3>🏰 Найти город Энда</h3>
+            <p>Ищет ближайший город Энда.</p>
+            <code class="code">/locate structure minecraft:end_city</code>
+            <button class="copy-btn" onclick="copy('/locate structure minecraft:end_city')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="mobs" data-search="призвать summon моб creeper">
+            <h3>💥 Призвать крипера</h3>
+            <p>Создаёт крипера рядом с игроком.</p>
+            <code class="code">/summon minecraft:creeper ~ ~ ~</code>
+            <button class="copy-btn" onclick="copy('/summon minecraft:creeper ~ ~ ~')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="mobs" data-search="зомби zombie summon">
+            <h3>🧟 Призвать зомби</h3>
+            <p>Создаёт зомби рядом с игроком.</p>
+            <code class="code">/summon minecraft:zombie ~ ~ ~</code>
+            <button class="copy-btn" onclick="copy('/summon minecraft:zombie ~ ~ ~')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="mobs" data-search="скелет skeleton summon">
+            <h3>💀 Призвать скелета</h3>
+            <p>Создаёт скелета рядом с игроком.</p>
+            <code class="code">/summon minecraft:skeleton ~ ~ ~</code>
+            <button class="copy-btn" onclick="copy('/summon minecraft:skeleton ~ ~ ~')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="mobs" data-search="железный голем iron golem">
+            <h3>🗿 Железный голем</h3>
+            <p>Призывает железного голема.</p>
+            <code class="code">/summon minecraft:iron_golem ~ ~ ~</code>
+            <button class="copy-btn" onclick="copy('/summon minecraft:iron_golem ~ ~ ~')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="server" data-search="инвентарь keepinventory gamerule">
+            <h3>🎒 Сохранение инвентаря</h3>
+            <p>Предметы не выпадают после смерти.</p>
+            <code class="code">/gamerule keepInventory true</code>
+            <button class="copy-btn" onclick="copy('/gamerule keepInventory true')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="server" data-search="мобы разрушение mobgriefing">
+            <h3>🛡️ Запретить разрушение мобами</h3>
+            <p>Запрещает мобам изменять блоки мира.</p>
+            <code class="code">/gamerule mobGriefing false</code>
+            <button class="copy-btn" onclick="copy('/gamerule mobGriefing false')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="server" data-search="время остановить daylightcycle">
+            <h3>⏸️ Остановить время</h3>
+            <p>Останавливает смену дня и ночи.</p>
+            <code class="code">/gamerule doDaylightCycle false</code>
+            <button class="copy-btn" onclick="copy('/gamerule doDaylightCycle false')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="server" data-search="время запустить daylightcycle">
+            <h3>▶️ Запустить время</h3>
+            <p>Возвращает обычную смену дня и ночи.</p>
+            <code class="code">/gamerule doDaylightCycle true</code>
+            <button class="copy-btn" onclick="copy('/gamerule doDaylightCycle true')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="server" data-search="сложность peaceful мирная">
+            <h3>🕊️ Мирная сложность</h3>
+            <p>Устанавливает мирную сложность.</p>
+            <code class="code">/difficulty peaceful</code>
+            <button class="copy-btn" onclick="copy('/difficulty peaceful')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="server" data-search="сложность easy лёгкая">
+            <h3>🙂 Лёгкая сложность</h3>
+            <p>Устанавливает лёгкую сложность.</p>
+            <code class="code">/difficulty easy</code>
+            <button class="copy-btn" onclick="copy('/difficulty easy')">📋 Копировать</button>
+        </div>
+
+
+        <div class="command" data-category="server" data-search="сложность hard сложная">
+            <h3>💀 Сложная сложность</h3>
+            <p>Устанавливает сложную сложность.</p>
+            <code class="code">/difficulty hard</code>
+            <button class="copy-btn" onclick="copy('/difficulty hard')">📋 Копировать</button>
+        </div>
+
+    </div>
+
+    <div id="noResults" class="no-results">
+        😕 Ничего не найдено
+    </div>
 
 </section>
 
 
-<!-- QUICK COMMANDS -->
-
 <section class="card">
 
-<h2>🚀 Быстрые команды</h2>
+    <h2>🚀 Быстрые команды</h2>
 
-<div class="grid">
+    <div class="quick">
 
-<button onclick="showCommand('/kill @e[type=item]')">
-🗑️ Удалить предметы
-</button>
+        <button onclick="copy('/gamerule keepInventory true')">
+            🎒 Keep Inventory
+        </button>
 
-<button onclick="showCommand('/weather clear')">
-🌤️ Очистить погоду
-</button>
+        <button onclick="copy('/gamemode creative')">
+            🟩 Creative
+        </button>
 
-<button onclick="showCommand('/gamerule doDaylightCycle false')">
-⏸️ Остановить время
-</button>
+        <button onclick="copy('/weather clear')">
+            ☀️ Clear Weather
+        </button>
 
-<button onclick="showCommand('/gamerule doDaylightCycle true')">
-▶️ Запустить время
-</button>
+        <button onclick="copy('/time set day')">
+            ☀️ Day
+        </button>
 
-<button onclick="showCommand('/gamerule mobGriefing false')">
-🛡️ Запретить разрушение мобами
-</button>
+        <button onclick="copy('/give @p minecraft:diamond 64')">
+            💎 Diamonds
+        </button>
 
-<button onclick="showCommand('/gamerule mobGriefing true')">
-💥 Разрешить разрушение мобами
-</button>
+        <button onclick="copy('/tp @p ~ ~10 ~')">
+            📍 Teleport Up
+        </button>
 
-</div>
+    </div>
 
 </section>
 
+
+<section class="card">
+
+    <h2>📖 Как использовать команды Minecraft?</h2>
+
+    <p class="hero-text">
+        Открой чат Minecraft Java Edition клавишей <b>T</b>,
+        вставь нужную команду и нажми Enter.
+        Для большинства команд нужны включённые читы
+        или соответствующие права на сервере.
+    </p>
+
+</section>
 
 </main>
 
 
 <footer>
-
-Minecraft Command Center<br>
-
-Made for Minecraft players ⛏️
-
+    Minecraft Command Center ⛏️<br><br>
+    Команды Minecraft Java Edition • Быстро • Удобно • Бесплатно
 </footer>
 
 
 <div id="toast">
-✓ Команда скопирована!
+    ✓ Команда скопирована!
 </div>
 
 
 <script>
 
-let currentCommand = "";
+let currentCategory = "all";
 
 
-/* SHOW COMMAND */
+function copy(command) {
 
-function showCommand(command) {
+    navigator.clipboard.writeText(command)
+        .then(() => showToast())
+        .catch(() => {
 
-    currentCommand = command;
-
-    document.getElementById("output").textContent = command;
-
-}
-
-
-/* PLAYER */
-
-function getPlayer() {
-
-    return (
-        document
-        .getElementById("player")
-        .value
-        .trim()
-    ) || "@p";
-
-}
-
-
-/* GENERATOR */
-
-function giveDiamonds() {
-
-    let player = getPlayer();
-
-    showCommand(
-        `/give ${player} minecraft:diamond 64`
-    );
-
-}
-
-
-function giveFood() {
-
-    let player = getPlayer();
-
-    showCommand(
-        `/give ${player} minecraft:cooked_beef 64`
-    );
-
-}
-
-
-function heal() {
-
-    let player = getPlayer();
-
-    showCommand(
-        `/effect give ${player} minecraft:instant_health 1 255 true`
-    );
-
-}
-
-
-function teleport() {
-
-    let player = getPlayer();
-
-    showCommand(
-        `/tp ${player} ~ ~10 ~`
-    );
-
-}
-
-
-/* COPY */
-
-async function copyCommand() {
-
-    if (!currentCommand) {
-
-        return;
-
-    }
-
-    try {
-
-        await navigator.clipboard.writeText(
-            currentCommand
-        );
-
-        showToast();
-
-    }
-
-    catch {
-
-        document.getElementById("output").textContent =
-            currentCommand +
-            "\n\nСкопируй команду вручную.";
-
-    }
-
-}
-
-
-/* TOAST */
-
-function showToast() {
-
-    let toast =
-        document.getElementById("toast");
-
-    toast.classList.add("show");
-
-    setTimeout(() => {
-
-        toast.classList.remove("show");
-
-    }, 1800);
-
-}
-
-
-/* SEARCH */
-
-function searchCommands() {
-
-    let query =
-        document
-        .getElementById("search")
-        .value
-        .toLowerCase()
-        .trim();
-
-    let buttons =
-        document.querySelectorAll(
-            "#commands button"
-        );
-
-    buttons.forEach(button => {
-
-        let name =
-            button
-            .dataset
-            .name
-            .toLowerCase();
-
-        if (
-            name.includes(query)
-            || query === ""
-        ) {
-
-            button.style.display = "";
-
-        }
-
-        else {
-
-            button.style.display = "none";
-
-        }
-
-    });
-
-}
-
-</script>
-
-</body>
-</html>
+            prompt(
+                "Скопируй
